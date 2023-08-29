@@ -20,6 +20,21 @@ test("200 + N deveria retornar 'Erro'", () => {
   expect(resultado).toBe("Erro, valor inválido!");
 });
 
+test("Dever retornar 'Insira um valor", () => {
+  const resultado = calculadora.somar();
+  expect(resultado).toBe("Insira um valor!");
+});
+
+test("2 / 2 deve retornar 1", () => {
+  const resultado = calculadora.dividi(2, 2);
+  expect(resultado).toBe(1);
+});
+
+test("O zero não pode ser dividido", () => {
+  const resultado = calculadora.dividi(0, 0);
+  expect(resultado).toBe("O número '0' não pode ser dividido!");
+});
+
 // test("nome do teste", callbackFunction);
 
 // function callbackFunction() {
