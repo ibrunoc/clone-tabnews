@@ -4,15 +4,14 @@
   "description": "Clone do Tabnews.com.br do curso.dev do Filipe Deschamps",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run docker:up && next dev",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "docker:up": "sudo docker compose -f infra/compose.yaml up -d",
-    "docker:stop": "sudo docker compose -f infra/compose.yaml stop",
-    "docker:list": "sudo docker ps",
-    "docker:psql": "psql --host=localhost --username=postgres --port=5432"
+    "docker:up": "docker compose -f infra/compose.yaml up -d",
+    "docker:stop": "docker compose -f infra/compose.yaml stop",
+    "docker:down": "docker compose -f infra/compose.yaml down"
   },
   "author": "",
   "license": "MIT",
