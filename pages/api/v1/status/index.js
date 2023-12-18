@@ -9,6 +9,12 @@ async function status(request, response) {
   const maxConnectionsResult = await database.query("SHOW max_connections;");
   const maxConnectionsValue = maxConnectionsResult.rows[0].max_connections;
 
+  const databaseOpenedConnectionsResult = await database.query(
+    " SELECT count(*)::int FROM pg_stat_activity WHERE datname = 'local_db';",
+  );
+  const databaseOpenedConnectionsValue =
+    databaseOpenedConnectionsResult.rows[0].count;
+
   // const resultQueryVersionDataBase = await database.query(
   //   "SELECT split_part(version(), ' ', 2) as version",
   // );
@@ -27,6 +33,7 @@ async function status(request, response) {
       database: {
         version: databaseVersionValue,
         max_connections: parseInt(maxConnectionsValue),
+        opened_connections: databaseOpenedConnectionsValue,
       },
     },
     // database: {
